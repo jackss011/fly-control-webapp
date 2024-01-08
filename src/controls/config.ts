@@ -3,6 +3,7 @@ import { clamp } from "./utils"
 
 
 export type Trims = 'elevator' | 'rudder'
+const MARGIN = 0.25
 
 export default class TrimManager {
   constructor() {
@@ -27,16 +28,16 @@ export default class TrimManager {
 
   get myState() {return this.state}
 
+  set myState(value) {this.state = value}
+
   setMin(which: Trims, min: number) {
-    const margin = 0.25
-    min = clamp(min, -1, this.state[which].max - margin)
+    min = clamp(min, -1, this.state[which].zero - MARGIN)
 
     this.state[which].min = min
   }
 
   setMax(which: Trims, max: number) {
-    const margin = 0.25
-    max = clamp(max, this.state[which].min + margin, 1)
+    max = clamp(max, this.state[which].zero + MARGIN, 1)
 
     this.state[which].max = max
   }
@@ -44,7 +45,7 @@ export default class TrimManager {
   setZero(which: Trims, zero=0) {
     const min = this.state[which].min
     const max = this.state[which].max
-    zero = clamp(zero, min, max)
+    zero = clamp(zero, min + MARGIN, max - MARGIN)
 
     this.state[which].zero = zero
   }

@@ -1,6 +1,5 @@
 import { observer } from "mobx-react-lite"
 import { deviceManager } from "../main"
-import Trim from "./Trim"
 import Configuration from "./Configuration"
 
 function App() {
@@ -10,7 +9,7 @@ function App() {
 
   return (
     <div className="py-3 px-4">
-      <h1 className="text-4xl tracking-wide font-bold">Fly Control</h1>
+      <h1 className="text-3xl tracking-wide font-bold">Fly Control</h1>
 
       <div className="flex flex-row align-center gap-x-4 mt-6">
         <button

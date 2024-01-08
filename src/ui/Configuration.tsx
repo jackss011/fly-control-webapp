@@ -5,7 +5,7 @@ import Trim from "./Trim";
 
 function Configuration() {
   return (<div>
-    <h1 className="text-3xl mt-6 mb-2">Configuration</h1>
+    <h1 className="text-2xl mt-6 mb-2 text-gray-400 font-bold">Configuration</h1>
     <label>
       <input
         className="mr-2"

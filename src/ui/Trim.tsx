@@ -22,10 +22,10 @@ function Trim(props: {
 
   return (
     <div className="flex flex-col gap-y-2 mt-4 px-4 max-w-96">
-      <h2 className="text-2xl -ml-4 capitalize">{props.which}</h2>
+      <h2 className="text-xl -ml-4 capitalize text-gray-400 font-bold">{props.which}</h2>
 
       <label>
-        ⬅️ Min [{min}]
+        ⬅️ Min [{min.toFixed(2)}]
         <br/>
         <input
           className="w-full"
@@ -39,7 +39,7 @@ function Trim(props: {
       </label>
 
       <label>
-        0️⃣ Zero [{zero}]
+        0️⃣ Zero [{zero.toFixed(2)}]
         <br/>
         <input
           className="w-full"
@@ -53,7 +53,7 @@ function Trim(props: {
       </label>
 
       <label>
-        ➡️ Max [{max}]
+        ➡️ Max [{max.toFixed(2)}]
         <br/>
         <input
           className="w-full"
@@ -66,8 +66,8 @@ function Trim(props: {
         />
       </label>
 
-      <label>
-        🔀 Invert [{String(invert)}]
+      <label className="flex flex-row justify-between">
+        <span>🔀 Invert [{String(invert)}]</span>
         <input
           className="ml-2"
           type="checkbox"
