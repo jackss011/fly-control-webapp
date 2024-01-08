@@ -10,3 +10,8 @@ export function floatToUint16InRange(floatValue: number, minValue: number, maxVa
   return clampedValue;
 }
 
+
+export function clamp(x: number, min: number, max: number) {
+  return Math.max(min, Math.min(max, x))
+}
+

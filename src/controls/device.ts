@@ -102,7 +102,7 @@ export default class DeviceManager {
   sendChannels(floatValues: number[]) {
     if(!floatValues || !this.channelsChar) return
 
-    const int16Values = floatValues.map(v => floatToUint16InRange(v, 0, 1))
+    const int16Values = floatValues.map(v => floatToUint16InRange(v, -1, 1))
 
     const data = (new Uint16Array(int16Values));
     this.channelsChar.writeValueWithoutResponse(data)

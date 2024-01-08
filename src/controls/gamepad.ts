@@ -1,4 +1,4 @@
-import { deviceManager } from "../main";
+import { deviceManager, trimManager } from "../main";
 
 const INTERVAL_HZ = 20
 
@@ -51,13 +51,17 @@ function controlLoop() {
   const gamepad = getGamepad()
   if(!gamepad) return
   
-  // const testValue = gamepad.axes[0]
-  const motor = gamepad.buttons[7].value
-  const elevator = 1 * gamepad.axes[0] / 2 + 0.5
-  const rudder = -1 * gamepad.axes[1] / 2 + 0.5
+  let motor = gamepad.buttons[7].value
+  let rudder = trimManager.computeMap('rudder', gamepad.axes[0])
+  let elevator = trimManager.computeMap('elevator', gamepad.axes[1])
 
-  const channels = [motor, elevator, rudder, 0]
-  console.log(channels)
+  let channels = null
+  if(trimManager.state.invertRudderElevator)
+    channels = [motor, elevator, rudder, 0]
+  else
+    channels = [motor, rudder, elevator, 0]
 
   deviceManager.sendChannels(channels)
+
+  console.log(channels.map(x => x.toFixed(2) ).join("\t"))
 }
